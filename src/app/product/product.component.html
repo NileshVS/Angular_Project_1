@@ -1,0 +1,36 @@
+
+<div class="panel panel-info">
+      <div class="panel-heading">
+            <h3 class="panel-title">Product List</h3>
+            
+      </div>
+      <div class="panel-body">
+            <div class="container"><label>Filter by: </label> <input placeholder="Enter product name" type="text"></div>
+            
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                        <button type="button" (click)="btnAction()" class="btn btn-default">{{buttonName}}</button>
+                        </th>
+                        <th>Product name</th>
+                        <th>Code No.</th>
+                        <th>Availability</th>
+                        <th>Price</th>
+                        <th>Rating <p *ngIf="returnText">{{text}}</p></th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr *ngFor="let details of productData" [ngSwitch]="btnStatus">
+                        <td *ngSwitchDefault><img src= "{{details.productImage}}" style="display: none"></td>
+                        <td *ngSwitchCase="true"><img src= "{{details.productImage}}"></td>
+                        <td>{{details.product}}</td>
+                        <td>{{details.code}}</td>
+                        <td>{{details.available}}</td>
+                        <td>{{details.price | currency:"USD"}}</td>
+                        <td><img src="..//assets/star-rating-icon-22.jpg" style="width:90px;height:20px;" title="{{details.rating}}" (click)="imgAction()"></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+
